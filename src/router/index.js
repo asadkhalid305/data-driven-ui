@@ -18,16 +18,14 @@ const routes = [
   {
     path: "/dynamic",
     name: "Dynamic Example",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "DynamicExample" */ "../views/DynamicExample.vue"),
+      import(
+        /* webpackChunkName: "DynamicExample" */ "../views/DynamicExample.vue"
+      ),
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
   routes,
 });
 
