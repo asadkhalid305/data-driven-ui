@@ -1,5 +1,7 @@
 <template>
-  <div class="dynamic-example-easy">Dynamic Example Easy</div>
+  <div class="dynamic-example-easy">
+    <h1>Dynamic Example Easy</h1>
+  </div>
 </template>
 
 <script>

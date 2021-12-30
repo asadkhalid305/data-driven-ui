@@ -22,6 +22,8 @@ import StaticExampleEasy from "../components/StaticExampleEasy.vue";
 import StaticExampleMedium from "../components/StaticExampleMedium.vue";
 import StaticExampleHard from "../components/StaticExampleHard.vue";
 
+import { apiDataService } from "../services/apiDataService";
+
 export default {
   name: "StaticExample",
   components: { StaticExampleEasy, StaticExampleMedium, StaticExampleHard },
@@ -40,6 +42,11 @@ export default {
         title: "Hard"
       }
     ]
-  })
+  }),
+  mounted() {
+    apiDataService.getStaticExampleEasyMetaData().then(response => {
+      console.log(response);
+    });
+  }
 };
 </script>
