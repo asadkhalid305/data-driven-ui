@@ -4,7 +4,7 @@
       <v-expansion-panel v-for="example in examples" :key="example.id">
         <v-expansion-panel-header>{{ example.title }}</v-expansion-panel-header>
         <v-expansion-panel-content v-if="example.id === 1">
-          <dynamic-example-easy />
+          <dynamic-example-easy :metadata="metadata" />
         </v-expansion-panel-content>
         <v-expansion-panel-content v-else-if="example.id === 2">
           <dynamic-example-medium />
@@ -22,24 +22,32 @@ import DynamicExampleEasy from "../components/DynamicExampleEasy.vue";
 import DynamicExampleMedium from "../components/DynamicExampleMedium.vue";
 import DynamicExampleHard from "../components/DynamicExampleHard.vue";
 
+import { apiDataService } from "../services/apiDataService";
+import { constantService } from "../services/constantService";
+import { utilService } from "../services/utilService";
+
 export default {
   name: "DynamicExample",
   components: { DynamicExampleEasy, DynamicExampleMedium, DynamicExampleHard },
   data: () => ({
-    examples: [
-      {
-        id: 1,
-        title: "Easy"
-      },
-      {
-        id: 2,
-        title: "Medium"
-      },
-      {
-        id: 3,
-        title: "Hard"
-      }
-    ]
-  })
+    examples: [...constantService.examplesData],
+    metadata: [],
+    formModel: {}
+  }),
+  mounted() {
+    this.getMetadata();
+  },
+  methods: {
+    getMetadata() {
+      apiDataService.getStaticExampleEasyMetaData().then(response => {
+        this.metadata = response.data || [];
+        this.setFormModel();
+      });
+    },
+    setFormModel() {
+      this.formModel = utilService.getInitialFormModel(this.metadata);
+      console.log(this.formModel);
+    }
+  }
 };
 </script>

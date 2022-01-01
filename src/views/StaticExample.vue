@@ -22,31 +22,13 @@ import StaticExampleEasy from "../components/StaticExampleEasy.vue";
 import StaticExampleMedium from "../components/StaticExampleMedium.vue";
 import StaticExampleHard from "../components/StaticExampleHard.vue";
 
-import { apiDataService } from "../services/apiDataService";
+import { constantService } from "../services/constantService";
 
 export default {
   name: "StaticExample",
   components: { StaticExampleEasy, StaticExampleMedium, StaticExampleHard },
   data: () => ({
-    examples: [
-      {
-        id: 1,
-        title: "Easy"
-      },
-      {
-        id: 2,
-        title: "Medium"
-      },
-      {
-        id: 3,
-        title: "Hard"
-      }
-    ]
-  }),
-  mounted() {
-    apiDataService.getStaticExampleEasyMetaData().then(response => {
-      console.log(response);
-    });
-  }
+    examples: [...constantService.examplesData]
+  })
 };
 </script>
