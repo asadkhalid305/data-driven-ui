@@ -1,10 +1,10 @@
 <template>
-  <div class="static-example-hard"></div>
+  <div class="dynamic-form">Hello World!</div>
 </template>
 
 <script>
 export default {
-  name: "StaticExampleHard"
+  name: "DynamicForm"
 };
 </script>
 
