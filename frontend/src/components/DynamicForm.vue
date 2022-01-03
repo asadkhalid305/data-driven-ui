@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  name: "DynamicForm"
+  name: "DynamicForm",
+  props: {
+    metadata: Object,
+    formModel: Object,
+    config: Object
+  }
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="dynamic-example">
-    <dynamic-form />
+    <dynamic-form :metadata="metadata" :form-model="formModel" :config="config" />
   </div>
 </template>
 
@@ -13,16 +13,23 @@ export default {
   name: "DynamicExample",
   components: { DynamicForm },
   data: () => ({
-    metadata: [],
+    metadata: {},
+    config: {},
     formModel: {}
   }),
   mounted() {
     this.getMetadata();
+    this.getConfig();
   },
   methods: {
     getMetadata() {
-      apiDataService.getStaticExampleEasyMetaData().then(response => {
-        this.metadata = response.data || [];
+      apiDataService.getMetadata().then(response => {
+        this.metadata = response.data || {};
+      });
+    },
+    getConfig() {
+      apiDataService.getMetadataConfig().then(response => {
+        this.config = response.data || {};
       });
     }
   }

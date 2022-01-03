@@ -8,7 +8,7 @@
       <v-tab
         v-for="route in routes"
         :key="route.path"
-        @click="changeRoute(route.path)"
+        @click="$router.push(route.path)"
       >{{ route.name }}</v-tab>
     </v-tabs>
 
@@ -19,25 +19,13 @@
 </template>
 
 <script>
+import { constantService } from "../../services/constantService";
+
 export default {
   name: "DefaultAppBar",
   data: () => ({
-    routes: [
-      {
-        name: "Static Example",
-        path: "/static"
-      },
-      {
-        name: "Dynamic Example",
-        path: "/dynamic"
-      }
-    ],
+    routes: [...constantService.routes],
     imagePlaceHolder: "AK"
-  }),
-  methods: {
-    changeRoute(path) {
-      this.$router.push(path);
-    }
-  }
+  })
 };
 </script>

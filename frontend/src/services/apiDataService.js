@@ -4,12 +4,24 @@ import { constantService } from "./constantService";
 const baseUrl = constantService.baseUrl;
 
 export const apiDataService = (function () {
-  function getStaticExampleEasyMetaData() {
-    const url = baseUrl + "metadata/example/easy";
+  function getMetadata() {
+    const url = baseUrl + "metadata";
+    return axios.get(url).then((res) => res.data);
+  }
+
+  function getMetadataConfig() {
+    const url = baseUrl + "metadata/config";
+    return axios.get(url).then((res) => res.data);
+  }
+
+  function getCountries() {
+    const url = baseUrl + "countries";
     return axios.get(url).then((res) => res.data);
   }
 
   return {
-    getStaticExampleEasyMetaData,
+    getMetadata,
+    getMetadataConfig,
+    getCountries,
   };
 })();
