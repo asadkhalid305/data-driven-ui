@@ -1,6 +1,5 @@
 import axios from "axios";
 import { constantService } from "./constantService";
-// import { mockDataService } from "./mockDataService";
 
 const baseUrl = constantService.baseUrl;
 
