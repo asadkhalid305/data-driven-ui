@@ -1,0 +1,26 @@
+<template>
+  <div class="c-insurance-plan">
+    <v-row>
+      <v-col v-for="field in fields" :key="field.key" :cols="field.cols || 6">
+        <cFormField
+          :field="field"
+          v-bind:value="value[field.key]"
+          v-on:input="input($event, field.key)"
+        ></cFormField>
+      </v-col>
+    </v-row>
+  </div>
+</template>
+
+<script>
+// Mixins
+import blockBaseMixin from "../../mixins/block.base.mixin";
+
+export default {
+  name: "cInsurancePlan",
+  mixins: [blockBaseMixin],
+};
+</script>
+
+<style>
+</style>
