@@ -17,7 +17,7 @@ export default {
     config: {},
     formModel: {}
   }),
-  mounted() {
+  created() {
     this.getMetadata();
     this.getConfig();
   },
