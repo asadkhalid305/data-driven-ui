@@ -1,7 +1,7 @@
 const dataService = {
   metadata: {
     // block level
-    user_input: [
+    user_details: [
       // field level
       {
         // should this field render on component mount
@@ -89,7 +89,7 @@ const dataService = {
         is_static_options: false,
         static_options: null,
         input_data_api: {
-          url: "http://localhost:5000/country",
+          url: "http://localhost:3000/country",
           method: "GET",
           body: null,
           bind_vars: null,
@@ -102,7 +102,7 @@ const dataService = {
         misc: null,
       },
     ],
-    patient_input: [
+    patient_details: [
       {
         // should this field render on component mount
         is_render_initial: true,
@@ -166,7 +166,7 @@ const dataService = {
         placeholder: "Select Patient Gender",
         is_mandatory: true,
         // field input data info
-        is_static_options: null,
+        is_static_options: null, // @FIXME @asad I believe we should fix this as well
         static_options: null,
         input_data_api: null,
         // next field info
@@ -206,7 +206,7 @@ const dataService = {
         placeholder: "Select Patient Country",
         is_mandatory: true,
         // field input data info
-        is_static_options: null,
+        is_static_options: null, // @FIXME @asad I believe we should fix this as well
         static_options: null,
         input_data_api: null,
         // next field info
@@ -353,11 +353,13 @@ const dataService = {
         static_options: null,
         input_data_api: null,
         // next field info
-        node_scope: null,
+        node_scope: [true],
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          remove_me: "Whatever you want !!",
+        },
       },
     ],
     user_consent: [
@@ -384,21 +386,32 @@ const dataService = {
     ],
   },
   metadataConfig: {
-    user_input: {
-      flat: true,
-      key: null,
+    title: "Insurance Claim Form",
+    blocks: {
+      user_details: {
+        flat: true,
+        key: null,
+      },
+      patient_details: {
+        flat: false,
+        key: "patient",
+      },
+      insurance_plan: {
+        flat: true,
+        key: null,
+      },
+      user_consent: {
+        flat: true,
+        key: null,
+      },
     },
-    patient_input: {
-      flat: false,
-      key: "patient",
-    },
-    insurance_plan: {
-      flat: true,
-      key: null,
-    },
-    user_consent: {
-      flat: true,
-      key: null,
+    submit: {
+      label: "Submit",
+      allow: {
+        block: "user_consent",
+        field: "accept_terms",
+        value: true,
+      },
     },
   },
   countries: [

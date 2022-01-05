@@ -19,9 +19,19 @@ export const apiDataService = (function () {
     return axios.get(url).then((res) => res.data);
   }
 
+  function callMetaSourceApi(url, method, body) {
+    if (!url || !method) {
+      return null;
+    }
+
+    method = method.toLowerCase();
+    return axios[method](url, body).then((res) => res.data);
+  }
+
   return {
     getMetadata,
     getMetadataConfig,
     getCountries,
+    callMetaSourceApi,
   };
 })();
