@@ -5,17 +5,12 @@ const baseUrl = constantService.baseUrl;
 
 export const apiDataService = (function () {
   function getMetadata() {
-    const url = baseUrl + "metadata";
+    const url = baseUrl + "/metadata";
     return axios.get(url).then((res) => res.data);
   }
 
   function getMetadataConfig() {
-    const url = baseUrl + "metadata/config";
-    return axios.get(url).then((res) => res.data);
-  }
-
-  function getCountries() {
-    const url = baseUrl + "countries";
+    const url = baseUrl + "/metadata/config";
     return axios.get(url).then((res) => res.data);
   }
 
@@ -24,6 +19,7 @@ export const apiDataService = (function () {
       return null;
     }
 
+    url = baseUrl + url;
     method = method.toLowerCase();
     return axios[method](url, body).then((res) => res.data);
   }
@@ -31,7 +27,6 @@ export const apiDataService = (function () {
   return {
     getMetadata,
     getMetadataConfig,
-    getCountries,
     callMetaSourceApi,
   };
 })();

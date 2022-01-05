@@ -89,7 +89,7 @@ const dataService = {
         is_static_options: false,
         static_options: null,
         input_data_api: {
-          url: "http://localhost:3000/country",
+          url: "/country",
           method: "GET",
           body: null,
           bind_vars: null,
@@ -166,8 +166,21 @@ const dataService = {
         placeholder: "Select Patient Gender",
         is_mandatory: true,
         // field input data info
-        is_static_options: null, // @FIXME @asad I believe we should fix this as well
-        static_options: null,
+        is_static_options: true,
+        static_options: [
+          {
+            text: "Male",
+            value: "male",
+          },
+          {
+            text: "Female",
+            value: "female",
+          },
+          {
+            text: "Other",
+            value: "other",
+          },
+        ],
         input_data_api: null,
         // next field info
         node_scope: ["parent", "child", "spouse"],
@@ -206,9 +219,14 @@ const dataService = {
         placeholder: "Select Patient Country",
         is_mandatory: true,
         // field input data info
-        is_static_options: null, // @FIXME @asad I believe we should fix this as well
+        is_static_options: false,
         static_options: null,
-        input_data_api: null,
+        input_data_api: {
+          url: "/country",
+          method: "GET",
+          body: null,
+          bind_vars: null,
+        },
         // next field info
         node_scope: ["parent", "child", "spouse"],
         is_check_next_nodes: false,
