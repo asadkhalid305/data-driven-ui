@@ -1,6 +1,9 @@
 // Components
 import cFormField from "../components/fields/FormField.vue";
 
+// Constants
+import { constantService } from '../services/constantService';
+
 export default {
   components: { cFormField },
   props: {
@@ -69,6 +72,12 @@ export default {
       }
       return field;
     },
+    getColumnNumber(field) {
+      const {
+        misc: { column_size },
+      } = field;
+      return column_size || constantService.defaultColumnWidth;
+    },
     removeField(fieldKey) {
       const fieldIndexToBeRemoved = this.fieldIndexCacheMap[fieldKey];
       if (fieldIndexToBeRemoved === undefined) {
@@ -111,8 +120,6 @@ export default {
             self.removeField(nextNodeKey);
             // return;
           }
-
-          nextNodeMetaField.cols = "6"; // "auto"; // for styling, ignore it
 
           const length = self.fields.push(nextNodeMetaField);
           const pushedIndex = length - 1;

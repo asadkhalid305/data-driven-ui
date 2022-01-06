@@ -11,7 +11,9 @@ const dataService = {
         label: "Name",
         type: "text_field",
         placeholder: "Enter Name",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: null,
         static_options: null,
@@ -21,7 +23,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -31,7 +35,9 @@ const dataService = {
         label: "Gender",
         type: "dropdown",
         placeholder: "Select Gender",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: true,
         static_options: [
@@ -54,7 +60,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -64,7 +72,9 @@ const dataService = {
         label: "Social Security Number",
         type: "text_field",
         placeholder: "Enter SSN",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: null,
         static_options: null,
@@ -74,7 +84,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -84,12 +96,14 @@ const dataService = {
         label: "Country",
         type: "dropdown",
         placeholder: "Select Country",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: false,
         static_options: null,
         input_data_api: {
-          url: "/country",
+          url: "/countries",
           method: "GET",
           body: null,
           bind_vars: null,
@@ -99,7 +113,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
     ],
     patient_details: [
@@ -111,7 +127,9 @@ const dataService = {
         label: "Relationship With Patient",
         type: "dropdown",
         placeholder: "Select your relationship with patient",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: true,
         static_options: [
@@ -129,12 +147,14 @@ const dataService = {
           "patient_gender",
           "patient_ssn",
           "patient_country",
-          "patient_check_hicn",
           "patient_diagnosis",
           "patient_first_physician",
+          "patient_check_hicn",
         ],
         // extra info
-        misc: null,
+        misc: {
+          column_size: "12",
+        },
       },
       {
         // should this field render on component mount
@@ -144,7 +164,9 @@ const dataService = {
         label: "Patient Name",
         type: "text_field",
         placeholder: "Enter Patient Name",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: null,
         static_options: null,
@@ -154,7 +176,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -164,7 +188,9 @@ const dataService = {
         label: "Patient Gender",
         type: "dropdown",
         placeholder: "Select Patient Gender",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: true,
         static_options: [
@@ -187,7 +213,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -197,7 +225,9 @@ const dataService = {
         label: "Patient Social Security Number",
         type: "text_field",
         placeholder: "Enter Patient SSN",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: null,
         static_options: null,
@@ -207,7 +237,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -217,12 +249,14 @@ const dataService = {
         label: "Patient Country",
         type: "dropdown",
         placeholder: "Select Patient Country",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: false,
         static_options: null,
         input_data_api: {
-          url: "/country",
+          url: "/countries",
           method: "GET",
           body: null,
           bind_vars: null,
@@ -232,7 +266,57 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
+      },
+      {
+        // should this field render on component mount
+        is_render_initial: false,
+        // field info
+        key: "patient_diagnosis",
+        label: "Patient Injury or Sickness",
+        type: "text_area",
+        placeholder: "Describe Patient Injury or Sickness",
+        validation: {
+          mandatory: true,
+        },
+        // field input data info
+        is_static_options: null,
+        static_options: null,
+        input_data_api: null,
+        // next field info
+        node_scope: ["self", "parent", "child", "spouse"],
+        is_check_next_nodes: false,
+        next_nodes: null,
+        // extra info
+        misc: {
+          column_size: "12",
+        },
+      },
+      {
+        // should this field render on component mount
+        is_render_initial: false,
+        // field info
+        key: "patient_first_physician",
+        label: "Patient First Physician",
+        type: "text_field",
+        placeholder: "Enter Name of Patient's First Physician",
+        validation: {
+          mandatory: true,
+        },
+        // field input data info
+        is_static_options: null,
+        static_options: null,
+        input_data_api: null,
+        // next field info
+        node_scope: ["self", "parent", "child", "spouse"],
+        is_check_next_nodes: false,
+        next_nodes: null,
+        // extra info
+        misc: {
+          column_size: "12",
+        },
       },
       {
         // should this field render on component mount
@@ -242,7 +326,9 @@ const dataService = {
         label: "Does Patient Have a HICN number?",
         type: "radio",
         placeholder: null,
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: true,
         static_options: [
@@ -261,7 +347,9 @@ const dataService = {
         is_check_next_nodes: true,
         next_nodes: ["patient_hicn"],
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
       {
         // should this field render on component mount
@@ -271,7 +359,9 @@ const dataService = {
         label: "Patient HICN",
         type: "text_field",
         placeholder: "Enter Patient HICN",
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: null,
         static_options: null,
@@ -281,47 +371,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
-      },
-      {
-        // should this field render on component mount
-        is_render_initial: false,
-        // field info
-        key: "patient_diagnosis",
-        label: "Patient Injury or Sickness",
-        type: "text_area",
-        placeholder: "Describe Patient Injury or Sickness",
-        is_mandatory: true,
-        // field input data info
-        is_static_options: null,
-        static_options: null,
-        input_data_api: null,
-        // next field info
-        node_scope: ["self", "parent", "child", "spouse"],
-        is_check_next_nodes: false,
-        next_nodes: null,
-        // extra info
-        misc: null,
-      },
-      {
-        // should this field render on component mount
-        is_render_initial: false,
-        // field info
-        key: "patient_first_physician",
-        label: "Patient First Physician",
-        type: "text_field",
-        placeholder: "Enter Name of Patient's First Physician",
-        is_mandatory: true,
-        // field input data info
-        is_static_options: null,
-        static_options: null,
-        input_data_api: null,
-        // next field info
-        node_scope: ["self", "parent", "child", "spouse"],
-        is_check_next_nodes: false,
-        next_nodes: null,
-        // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
     ],
     insurance_plan: [
@@ -334,7 +386,9 @@ const dataService = {
           "Are you or your dependant covered under any other insurance plan?",
         type: "radio",
         placeholder: null,
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: true,
         static_options: [
@@ -353,7 +407,9 @@ const dataService = {
         is_check_next_nodes: true,
         next_nodes: ["insurance_company"],
         // extra info
-        misc: null,
+        misc: {
+          column_size: "12",
+        },
       },
       {
         // should this field render on component mount
@@ -364,7 +420,9 @@ const dataService = {
         type: "block",
         placeholder: null,
         is_multiple: null,
-        is_mandatory: null,
+        validation: {
+          mandatory: true,
+        },
         is_show_encrypted: null,
         // field input data info
         is_static_options: null,
@@ -372,11 +430,11 @@ const dataService = {
         input_data_api: null,
         // next field info
         node_scope: [true],
-        is_check_next_nodes: false,
+        is_check_next_nodes: null,
         next_nodes: null,
         // extra info
         misc: {
-          remove_me: "Whatever you want !!",
+          column_size: "12",
         },
       },
     ],
@@ -389,7 +447,9 @@ const dataService = {
         label: "Have you read all the terms and conditions?",
         type: "checkbox",
         placeholder: null,
-        is_mandatory: true,
+        validation: {
+          mandatory: true,
+        },
         // field input data info
         is_static_options: false,
         static_options: null,
@@ -399,7 +459,9 @@ const dataService = {
         is_check_next_nodes: false,
         next_nodes: null,
         // extra info
-        misc: null,
+        misc: {
+          column_size: "6",
+        },
       },
     ],
   },

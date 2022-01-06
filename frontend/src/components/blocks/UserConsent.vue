@@ -1,7 +1,7 @@
 <template>
   <div class="c-user-consent">
     <v-row>
-      <v-col v-for="field in fields" :key="field.key" :cols="field.cols || 6">
+      <v-col v-for="field in fields" :key="field.key" :cols="getColumnNumber(field)">
         <cFormField
           :field="field"
           v-bind:value="value[field.key]"

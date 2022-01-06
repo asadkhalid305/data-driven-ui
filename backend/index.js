@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Welcome to devcon server");
 });
 
-app.get("/country", (req, res) => {
+app.get("/countries", (req, res) => {
   res.status(200).send({
     status: 0,
     message: "Success",

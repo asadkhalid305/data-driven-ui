@@ -14,6 +14,11 @@ export const apiDataService = (function () {
     return axios.get(url).then((res) => res.data);
   }
 
+  function getCountries() {
+    const url = baseUrl + "/countries";
+    return axios.get(url).then((res) => res.data);
+  }
+
   function callMetaSourceApi(url, method, body) {
     if (!url || !method) {
       return null;
@@ -28,5 +33,6 @@ export const apiDataService = (function () {
     getMetadata,
     getMetadataConfig,
     callMetaSourceApi,
+    getCountries
   };
 })();

@@ -16,9 +16,9 @@ export default {
     value: String,
     fieldMeta: {
       type: Object,
-      default: () => ({}),
-    },
-  },
+      default: () => ({})
+    }
+  }
 };
 </script>
 
