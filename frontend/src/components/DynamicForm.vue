@@ -8,14 +8,11 @@
           </v-col>
         </v-row>
 
-        <div v-for="(blockFields, blockKey) in blocks" :key="blockKey">
-          <component
-            :is="componentMap[blockKey]"
-            :meta="blockFields"
-            v-model="formModel[blockKey]"
-          ></component>
+        <div v-for="(blockFields, blockKey, index) in blocks" :key="blockKey">
+          <component :is="componentMap[blockKey]" :meta="blockFields" v-model="formModel[blockKey]"></component>
 
-          <div class="my-8">
+          <!-- do not show divider on the last block -->
+          <div v-if="showDivider(index)" class="my-8">
             <v-divider></v-divider>
           </div>
         </div>
@@ -23,17 +20,25 @@
         <!--
           added `v-if="title"` here to fix the submit button show up on init for a split second
           proper solution will be to render the form after API data has been fetched
-         -->
+        -->
         <v-btn
           v-if="title"
-          :disabled="isSubmitDisabled"
           color="success"
           class="mr-4 mt-2"
           :class="{ 'mt-2': !valid }"
+          :disabled="isSubmitDisabled"
+          :loading="submitionDetails.loading"
           @click="submit"
-        >
-          {{ submitConfig.label || "Submit" }}
-        </v-btn>
+        >{{ submitConfig.label || "Submit" }}</v-btn>
+
+        <v-alert
+          transition="fade-transition"
+          :value="submitionDetails.successState"
+          dense
+          text
+          type="success"
+          class="mt-4"
+        >{{ submitionDetails.successMessage }}</v-alert>
       </v-form>
     </v-container>
   </div>
@@ -47,7 +52,7 @@ import cInsurancePlan from "../components/blocks/InsurancePlan.vue";
 import cUserConsent from "../components/blocks/UserConsent.vue";
 
 // Constants
-import { blockIdToComponentMap } from "../constants/enums";
+import { constantService } from "../services/constantService";
 
 export default {
   name: "DynamicForm",
@@ -55,22 +60,26 @@ export default {
   props: {
     metadata: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     config: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     formModel: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   data: () => ({
     valid: false,
-
+    submitionDetails: {
+      successMessage: "",
+      successState: false,
+      loading: false
+    },
     // component mapping enum
-    componentMap: blockIdToComponentMap,
+    componentMap: constantService.blockIdToComponentMap
   }),
   computed: {
     title() {
@@ -96,16 +105,28 @@ export default {
     },
     blocks() {
       return this.metadata;
-    },
+    }
   },
   methods: {
     submit() {
+      // set loader on submit button
+      this.submitionDetails.loading = true;
+
+      // make API payload
       const payload = this.transformPayload();
 
-      // after 2000 ms remove toast
+      // after 1000 ms remove loader and show toast
       setTimeout(() => {
-        console.log("submitted with payload (find table below)");
-        console.table(payload);
+        this.submitionDetails.loading = false;
+        this.submitionDetails.successMessage = "Submitted";
+        this.submitionDetails.successState = true;
+        console.log("submitted with payload");
+        console.log(payload);
+      }, 1000);
+
+      // after 3000 ms remove toast
+      setTimeout(() => {
+        this.submitionDetails.successState = false;
       }, 3000);
     },
     transformPayload() {
@@ -137,7 +158,10 @@ export default {
         {}
       );
     },
-  },
+    showDivider(index) {
+      return index < Object.values(this.blocks).length - 1;
+    }
+  }
 };
 </script>
 

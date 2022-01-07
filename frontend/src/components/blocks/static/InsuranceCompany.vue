@@ -1,24 +1,28 @@
 <template>
   <div class="c-insurance-company">
-    <v-row>
-      <v-col>
-        {{ fieldMeta.misc.remove_me }}
-
-        <v-text-field
-          :label="fieldOne.label"
-          :hint="fieldOne.placeholder"
-          :value="value[fieldOne.key]"
-          @input="input($event, fieldOne.key)"
-        ></v-text-field>
-
-        <v-textarea
-          :label="fieldTwo.label"
-          :hint="fieldTwo.placeholder"
-          :value="value[fieldTwo.key]"
-          @change="input($event, fieldTwo.key)"
-        ></v-textarea>
-      </v-col>
-    </v-row>
+    <div class="company-details-block my-8 pa-4">
+      <v-row>
+        <v-col class="text-center">
+          <p class="font-weight-bold">Insurance Plan {{ count }}</p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field label="Company name" @input="input('name', $event, count)"></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field label="Address" @input="input('address', $event, count)"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field label="Coverage type" @input="input('coverage_type', $event, count)"></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field label="Policy number" @input="input('policy_number', $event, count)"></v-text-field>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -26,27 +30,24 @@
 export default {
   name: "cInsuranceCompany",
   props: {
-    value: {
-      type: Object,
-      default: () => ({}),
-    },
-    fieldMeta: {
-      type: Object,
-      default: () => ({}),
-    },
+    count: {
+      type: Number,
+      default: () => ({})
+    }
   },
-  data: () => ({
-    fieldOne: { key: "abc_key", label: "Abc" },
-    fieldTwo: { key: "xyz_key", label: "Xyz" },
-  }),
+  data: () => ({}),
   methods: {
-    input(event, key) {
-      const obj = { [key]: event };
-      this.$emit("input", { ...this.value, ...obj });
-    },
-  },
+    input(key, value, count) {
+      this.$emit("input", { key, value, count });
+    }
+  }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.c-insurance-company {
+  .company-details-block {
+    outline: 1px solid;
+  }
+}
 </style>
