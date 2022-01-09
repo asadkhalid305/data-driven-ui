@@ -32,5 +32,7 @@ cd frontend && npm install && npm run serve
 ```
 
 Thanks for visiting here 🙏
+
 I encourage you to learn and collaborate
+
 If you have any queries or suggestions or just wanted to say Hey 👋 you can find me at [@asadkhalid305](https://www.linkedin.com/in/asadkhalid305/)
