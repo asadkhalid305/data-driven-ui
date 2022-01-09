@@ -7,6 +7,7 @@ This project contains the code for the talk given on Day 2 of [DevCon6](https://
 For a quick gist, in this talk, we have discussed the orthodox approach of writing the U.I. components statically then, move on to discuss the need for a Data-Driven approach, and how we can implement it using `metadata` (data that will lead U.I. to render components as defined by the B.E. instead of hard-coding them on F.E.), benefits of using it and things to watch out for.
 
 You can find the complete Day 2 of the conference here at [DevCon6](https://www.youtube.com/watch?v=UaS3I38XK2U) youtube channel
+
 Here are the [`slides`](https://www.canva.com/design/DAE0f-nQYnE/MJE4wzw40LIizN17Ygww-g/view?utm_content=DAE0f-nQYnE&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#4)
 
 ## Development 👨‍💻
@@ -19,7 +20,7 @@ This project is created using `node.js` so, you should have node.js installed on
 We need to install the dependencies then start the server. You need to open the terminal of your choice and run the following command.
 
 ```sh
-cd backend && npm install & npm start
+cd backend && npm install && npm start
 ```
 
 ### Start F.E. Server
@@ -27,7 +28,7 @@ cd backend && npm install & npm start
 After the B.E. server has been started, then we can start the frontend server, again we need to install the dependencies then start the server, you need to open another instance of the terminal (at project root) of your choice and run the following command.
 
 ```sh
-cd frontend && npm install & npm run serve
+cd frontend && npm install && npm run serve
 ```
 
 Thanks for visiting here 🙏
