@@ -43,35 +43,37 @@
             </v-col>
           </v-row>
 
-          <template v-if="isShowPatientDetails">
-            <v-row>
-              <v-col>
-                <v-text-field v-model="formModel.patient.name" :label="`Patient name`"></v-text-field>
-              </v-col>
-              <v-col>
-                <v-select
-                  v-model="formModel.patient.gender"
-                  :items="options_data.gender"
-                  :label="`Patient gender`"
-                ></v-select>
-              </v-col>
-            </v-row>
+          <template v-if="this.formModel.patient.relationship">
+            <template v-if="isShowPatientSpecificBlock">
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="formModel.patient.name" :label="`Patient name`"></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-select
+                    v-model="formModel.patient.gender"
+                    :items="options_data.gender"
+                    :label="`Patient gender`"
+                  ></v-select>
+                </v-col>
+              </v-row>
 
-            <v-row>
-              <v-col>
-                <v-text-field
-                  v-model="formModel.patient.ssn"
-                  :label="`Patient social security number`"
-                ></v-text-field>
-              </v-col>
-              <v-col>
-                <v-select
-                  v-model="formModel.country"
-                  :items="options_data.countries"
-                  label="Patient Country"
-                ></v-select>
-              </v-col>
-            </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="formModel.patient.ssn"
+                    :label="`Patient social security number`"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-select
+                    v-model="formModel.country"
+                    :items="options_data.countries"
+                    label="Patient Country"
+                  ></v-select>
+                </v-col>
+              </v-row>
+            </template>
 
             <v-row>
               <v-col>
@@ -280,11 +282,8 @@ export default {
     }
   }),
   computed: {
-    isShowPatientDetails() {
-      return (
-        this.formModel.patient.relationship !== "" &&
-        this.formModel.patient.relationship !== "self"
-      );
+    isShowPatientSpecificBlock() {
+      return this.formModel.patient.relationship !== "self";
     }
   },
   created() {
